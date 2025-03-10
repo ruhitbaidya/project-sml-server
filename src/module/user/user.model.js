@@ -8,7 +8,8 @@ const UserSchema = new Schema({
     },
     email : {
         type : String,
-        required : true
+        required: true,
+        unique : true,
     },
     password : {
         type : String,
@@ -17,6 +18,10 @@ const UserSchema = new Schema({
     statue : {
         type : Boolean,
         default : true
+    },
+    role : {
+        type : String,
+        default : "customer"
     }
 }, {timestamps : true});
 

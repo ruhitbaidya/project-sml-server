@@ -1,6 +1,7 @@
 import express, { urlencoded } from "express";
 import cors from "cors";
 import { mainRouter } from "./router/rootRouter.js";
+import { globalErrorHandel } from "./error/globalErrorHandel.js";
 const app = express();
 
 
@@ -17,6 +18,7 @@ app.get("/", (req, res)=>{
 
 app.use(mainRouter)
 
+app.use(globalErrorHandel)
 
 
 export default app;

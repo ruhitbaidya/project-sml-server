@@ -4,8 +4,8 @@ import { authServices } from "./auth.services.js";
 
 
 const loginUser = catchAsyncFunction(async(req, res)=>{
-    const userInfo= req.body;
-    const result = await authServices.userLoginServices(req.body)
+    const userInfo = req.body;
+    const result = await authServices.userLoginServices(userInfo)
     sendResponse(res, {
         status : result.status,
         message : result.message,

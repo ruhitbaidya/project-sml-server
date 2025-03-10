@@ -1,34 +1,39 @@
 import { userModel } from "../user/user.model.js"
+import { tokenGen } from "./tokenGenrate.js";
 
 
 const userLoginServices = async(info)=>{
-    console.log(info)
-    const findUser = await userModel.findOne({email: info.email});
-    if(!findUser){
-        return {
-            success : false,
-            status : 404,
-            message : "user Not Found",
-            result : null
-        }
-    }
-
-        if(info.password === info.password){
+    try {
+        console.log(info)
+        const findUser = await userModel.findOne({ email: info.email });
+        if (!findUser) {
             return {
-                success : true,
-                status : 200,
-                message: " User Login Successful",
-                result : "Your Token"
-            }
-        }else{
-            return {
+                status : 404,
+                message : "Unauthorize User",
                 success : false,
-                status : 406,
-                message: " Unauthorize user",
                 result : null
             }
         }
-
+        if (findUser) {
+            if (findUser.password === info.password) {
+                return {
+                    status : 200,
+                    message : "successfull Login",
+                    success : true,
+                    result : tokenGen({id: findUser._id, role : findUser.role, name : findUser.name, email: findUser.email})
+                }
+            } else {
+                return {
+                    status : 404,
+                    message : "Unauthorize User",
+                    success : false,
+                    result : null
+                }
+            }
+        }
+    } catch (err){
+        return err
+    }
 }
 
 export const authServices = {

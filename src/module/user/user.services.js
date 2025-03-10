@@ -1,9 +1,9 @@
 import { userModel } from "./user.model.js"
 
 
-const createuserServices = async(user)=>{
-    const result = await userModel.create(user);
-    return result
+const createuserServices = async (user) => {
+        const result = await userModel.create(user);
+        return result    
 }
 
 
