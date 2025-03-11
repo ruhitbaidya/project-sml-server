@@ -12,7 +12,13 @@ const getAllProductServices = async () => {
 }
 
 
+const getSingalProductServices = async(id)=>{
+    const result = await productModel.findById({_id: id})
+    return result
+}
+
 export const productServices = {
     getAllProductServices,
-    createProductServices
+    createProductServices,
+    getSingalProductServices
 }

@@ -25,7 +25,19 @@ const getAllProductControler = catchAsyncFunction(async (req, res) => {
 })
 
 
+const getSingalProductControler = catchAsyncFunction(async(req, res)=>{
+    const {id} = req.params;
+    const result = await productServices.getSingalProductServices(id)
+    sendResponse(res, {
+        status: 200,
+        success : true,
+        message: "Get Product",
+        result
+    })
+})
+
 export const productContoler = {
     getAllProductControler,
-    createProductControler
+    createProductControler,
+    getSingalProductControler
 }

@@ -7,6 +7,6 @@ const router = express.Router();
 
 router.get("/get-product", productContoler.getAllProductControler);
 router.post("/product-create", productContoler.createProductControler)
-
+router.get("/get-singal-product/:id", productContoler.getSingalProductControler)
 
 export const productRouter = router
